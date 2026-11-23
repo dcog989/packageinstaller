@@ -156,7 +156,12 @@ ApplicationWindow {
         }
     }
 
-    Component.onCompleted: if (Backend.hasStartupFile) show("appimage")
+    Component.onCompleted: {
+        if (Backend.hasStartupFile)
+            show("appimage")
+        else
+            show(Look.prefs.startupPage)
+    }
 
     width: 1220
     height: 800
@@ -261,6 +266,8 @@ ApplicationWindow {
 
                 Repeater {
                     model: ListModel {
+                        id: navSections
+
                         ListElement { name: "home"; label: qsTr("Discover"); glyph: "M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" }
                         ListElement { name: "browse"; label: qsTr("Browse"); glyph: "M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" }
                         ListElement { name: "installed"; label: qsTr("Installed"); glyph: "M12 3a9 9 0 1 0 0 18a9 9 0 0 0 0-18zM8 12l3 3l5-6" }
@@ -431,7 +438,10 @@ ApplicationWindow {
     }
     Component {
         id: settingsPage
-        SettingsPage {}
+        SettingsPage {
+            // the sidebar's own list, so a new section needs no second entry
+            sections: navSections
+        }
     }
     Component {
         id: detailsPage

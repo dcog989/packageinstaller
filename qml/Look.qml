@@ -5,6 +5,7 @@ QtObject {
     id: look
 
     readonly property AppearanceSettings settings: AppearanceSettings {}
+    readonly property AppSettings prefs: AppSettings {}
 
     readonly property Binding scheme: Binding {
         target: Application.styleHints

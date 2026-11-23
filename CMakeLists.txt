@@ -123,6 +123,7 @@ qt_add_executable(${PROJECT_NAME}
 set(PI_QML_FILES
     qml/Main.qml
     qml/Look.qml
+    qml/AppSettings.qml
     qml/AppearanceSettings.qml
     qml/Glyph.qml
     qml/AppIcon.qml

@@ -6,6 +6,9 @@ import CachyOS.PackageInstaller
 ScrollPage {
     id: root
 
+    /// The sections of the sidebar, in its order: { name, label, glyph }.
+    required property var sections
+
     inset: Look.pagePadding - 6
 
     /// Scrolls to the switches for the AUR and Flatpak.
@@ -26,6 +29,31 @@ ScrollPage {
 
     Heading {
         text: qsTr("Settings")
+    }
+
+    Section {
+        title: qsTr("Open on startup")
+
+        Flow {
+            width: parent.width
+            spacing: 8
+
+            Repeater {
+                model: root.sections
+
+                PillButton {
+                    required property string name
+                    required property string label
+                    readonly property bool current: Look.prefs.startupPage === name
+
+                    text: label
+                    tone: current ? "primary" : "soft"
+                    Accessible.checkable: true
+                    Accessible.checked: current
+                    onClicked: Look.prefs.startupPage = name
+                }
+            }
+        }
     }
 
     Section {
