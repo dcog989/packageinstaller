@@ -17,7 +17,9 @@ concurrency:
 jobs:
   build:
     name: Build and test
-    runs-on: ubuntu-latest
+    # Set the repository variable CI_RUNNER=cachyos-actionserver to use the
+    # self-hosted runners; without it, jobs run on GitHub-hosted runners.
+    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
     container: cachyos/cachyos:latest
     env:
       CPM_SOURCE_CACHE: ${{ github.workspace }}/.cpm
