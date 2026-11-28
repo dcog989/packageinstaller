@@ -65,7 +65,7 @@ Flatpak apps and add AppImage files to the menu.
 
 Build:
 ```sh
-sudo pacman -S --needed base-devel cmake git ninja qt6-base qt6-declarative qt6-tools appstream-qt pacman elfutils
+sudo pacman -S --needed base-devel cmake git ninja qt6-base qt6-declarative qt6-tools appstream-qt pacman elfutils vulkan-headers
 ```
 
 Qt 6.10 or newer and a C++26 compiler (GCC 15+, Clang 20+) are required.
@@ -87,17 +87,6 @@ An uninstalled build can be run as `build/cachyos-pi`; without the installed
 helper it runs `build/cachyos-pi-helper` through pkexec's generic prompt.
 
 Run the tests with `ctest --test-dir build`.
-
-## Packaging
-
-`packaging/` holds two PKGBUILDs: `cachyos-packageinstaller` builds a tagged
-release, `cachyos-packageinstaller-git` the default branch. The release one
-needs its checksum filled in (`updpkgsums`) once the version is tagged.
-
-```sh
-cd packaging/cachyos-packageinstaller-git
-makepkg -si
-```
 
 ## PKGBUILD check
 
@@ -145,6 +134,5 @@ the package database, so they are only done in the app.
 | `qml/` | the user interface |
 | `pkglist.yaml` | the curated "CachyOS picks" on the start page |
 | `org.cachyos.cachyos-pi.metainfo.xml` | AppStream metadata for software centres |
-| `packaging/` | PKGBUILDs |
 | `THIRD-PARTY.md` | credits and licence of the community colour palettes |
 | `screenshots/` | the pictures in this file |
